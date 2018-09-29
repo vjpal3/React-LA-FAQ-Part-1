@@ -1,0 +1,46 @@
+.qa-tile {
+  margin: auto;;
+  width: 800px;
+}
+
+.tab {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  background-color: $black;
+  color: white;
+  text-align: center;
+  box-shadow: 3px 3px 3px $black;
+}
+
+.tab-open {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  background-color: $green;
+  color: $black;
+  text-align: center;
+  border: 1px solid $black;
+  box-shadow: 3px 3px 3px $black;
+}
+
+.q-div {
+  display: inline-block;
+  color: $grey;
+  padding-left: 15px;
+}
+
+.a-div {
+  color: $grey;
+}
+
+.qtab-wrapper {
+  margin-bottom: 15px;
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    background: $grey;
+    background-image: linear-gradient(to right, #ccc, $grey, #ccc);
+}
