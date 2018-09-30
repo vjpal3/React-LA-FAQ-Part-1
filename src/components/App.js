@@ -6,29 +6,56 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
+      selectedId: null,
     }
-    this.handleClick = this.handleClick.bind(this);
+    this.setSelectedTab = this.setSelectedTab.bind(this);
   }
 
-  handleClick() {
-    console.log("tab clicked!");
-    this.setState({visible: !(this.state.visible)})
+  setSelectedTab(id) {
+    if(this.state.selectedId === id){
+      this.setState({ visible: !(this.state.visible)});
+    }
+    else {
+      this.setState({ visible: true });
+    }
+    this.setState({ selectedId: id });
   }
 
   render() {
-    let className = this.state.visible ? 'tab-open' : 'tab';
-    let tabText = this.state.visible ? '-' : '+';
+    // console.log(this.state);
+    let qasData = this.props.data.map(item => {
+      let className;
+      let tabText;
+
+      if(this.state.selectedId === item.id && this.state.visible) {
+        className = 'tab-open';
+        tabText = '-';
+      }
+      else {
+        className = 'tab';
+        tabText = '+';
+      }
+
+      let handleClick = () => {
+        this.setSelectedTab(item.id)
+      }
+
+      return (
+        <QaComponent
+          key={item.id}
+          data={item}
+          handleClick={handleClick}
+          className={className}
+          tabText={tabText}
+        />
+      );
+    });
 
     return(
       <div>
         <h2>We're here to help</h2>
-        <QaComponent
-          data={this.props.data}
-          handleClick={this.handleClick}
-          className={className}
-          tabText={tabText}
-        />
+        {qasData}
       </div>
     )
   }
